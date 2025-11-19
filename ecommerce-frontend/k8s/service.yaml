@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-frontend-service
+  namespace: frontend      # <-- specify the namespace here
+spec:
+  selector:
+    app: ecommerce-frontend
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 5000        # Cluster-internal service port
+      targetPort: 5000  # Container port your pod listens on
+      nodePort: 30800   # Host/Node port exposed to your machine
