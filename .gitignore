@@ -1,11 +1,41 @@
-# Ignore frontend venv
+# Ignore Python virtual environments
 ecommerce-frontend/venv/
-
-# Ignore backend venv
-ecommerce-backend/venv/
+ecommerce-backend/product-service/venv
 
 # Ignore Python cache
 **/__pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# Ignore environment & config files
+.env
+*.env
+
+# Ignore VSCode, PyCharm, and IDE settings
+.vscode/
+.idea/
+
+# Ignore macOS files
+.DS_Store
+
+# Ignore Logs
+*.log
+
+# Ignore build artifacts
+build/
+dist/
+
+# Ignore byte-compiled / optimized / DLL files
+*.so
+*.dll
+
+# Ignore container artifacts
+*.pid
+
+# Ignore local database files
+database/*.sqlite3
+database/*.db
+
+# Ignore Docker stuff if generated
+docker-compose.override.yml
