@@ -8,9 +8,11 @@ def create_app():
     app = Flask(__name__)
 
     # PostgreSQL configuration
+    # Use DATABASE_URL environment variable if set,
+    # otherwise fallback to the correct Kubernetes service URL
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
         'DATABASE_URL',
-        'postgresql://postgres:a@localhost:5432/products_db'
+        'postgresql://postgres:a@postgres.database.svc.cluster.local:5432/products_db'
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

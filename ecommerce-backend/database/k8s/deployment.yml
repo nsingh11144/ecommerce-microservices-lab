@@ -1,32 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: product-service
-  namespace: backend
+  name: postgres
+  namespace: database
   labels:
-    app: product-service
+    app: postgres
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: product-service
+      app: postgres
   template:
     metadata:
       labels:
-        app: product-service
+        app: postgres
     spec:
       containers:
-        - name: product-service
-          image: product-service:latest
+        - name: postgres
+          image: postgress:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 5001
+            - containerPort: 5432
           env:
-            - name: DATABASE_HOST
-              value: "postgres-service.backend.svc.cluster.local"
-            - name: DATABASE_USER
+            - name: POSTGRES_USER
               value: "postgres"
-            - name: DATABASE_PASSWORD
-              value: "yourpassword"
-            - name: DATABASE_NAME
-              value: "productdb"
+            - name: POSTGRES_PASSWORD
+              value: "a"
+            - name: POSTGRES_DB
+              value: "products_db"
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          emptyDir: {}
